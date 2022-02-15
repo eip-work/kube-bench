@@ -17,3 +17,5 @@ require (
 	gorm.io/gorm v1.22.3
 	k8s.io/client-go v0.23.1
 )
+
+replace github.com/aquasecurity/kube-bench => ./

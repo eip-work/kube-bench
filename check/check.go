@@ -129,7 +129,7 @@ func (c *Check) run() State {
 	// If check type is manual force result to WARN
 	if c.Type == MANUAL {
 		c.Reason = "Test marked as a manual test"
-		c.State = WARN
+		c.State = INFO
 		glog.V(3).Info(c.Reason)
 		return c.State
 	}

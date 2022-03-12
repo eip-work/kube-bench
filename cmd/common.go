@@ -134,11 +134,11 @@ func generateDefaultEnvAudit(controls *check.Controls, binSubs []string) {
 						if len(binSubs) == 1 {
 							binPath = binSubs[0]
 						} else {
-							fmt.Printf("AuditEnv not explicit for check (%s), where bin path cannot be determined\n", checkItem.ID)
+							checkItem.Reason = fmt.Sprintf("AuditEnv not explicit for check (%s), where bin path cannot be determined\n", checkItem.ID)
 						}
 
 						if test.Env != "" && checkItem.AuditEnv == "" {
-							checkItem.AuditEnv = fmt.Sprintf("cat \"/proc/$(/bin/ps -C %s -o pid= | tr -d ' ')/environ\" | tr '\\0' '\\n'", binPath)
+							checkItem.AuditEnv = fmt.Sprintf("cat \"/proc/$(/bin/ps -C %s -o pid= | tr -d ' ' | head -1)/environ\" | tr '\\0' '\\n'", binPath)
 						}
 					}
 				}
